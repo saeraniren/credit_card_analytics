@@ -291,14 +291,9 @@ np.log1p을 통한 로그 값 치환 후 중간값 왜곡 방지를 위해 다�
 
 먼저 Elbow Method를 이용하여 현재 데이터에서 얻을 수 있는 최적의 군집 k 갯수를 구하였다. 또한 kneed 라이브러리를 통해 우리가 직접 그래프를 보고 판단하지 않고 라이브러리에서 최적의 군집을 설정해주는 도구를 통해 k를 찾아내는 과정을 거쳤다.
 
-![download.png](attachment:d647f86b-d728-4323-8da4-d855909eb5a2:download.png)
+<img src="./img/elbow_method.png">
 
-<aside>
-💡
-
-Elbow Method를 통해 최적의 군집 개수는 5개로 정해졌으므로, 5개의 클러스터링을 통해 군집파악을 해보고자 하였다.
-
-</aside>
+💡Elbow Method를 통해 최적의 군집 개수는 5개로 정해졌으므로, 5개의 클러스터링을 통해 군집파악을 해보고자 하였다.
 
 ## PCA
 
@@ -306,14 +301,9 @@ PCA를 통한 차원 축소를 통해 데이터를 저차원으로 줄여 고차
 
 하지만 차원 축소를 진행하게 될 경우, 데이터의 정보가 최대한 보존된다고 하여도 없어지는 정보들이 있기 때문에, 차원 축소를 통해 데이터의 차원을 축소하기 데이터의 95%를 설명하는 PCA의 개수를 파악하고자 하였다.
 
-![download.png](attachment:ba7ac5cf-13fc-4ca1-995d-102c60c1fd3a:download.png)
+<img src="./img/pca.png">
 
-<aside>
-💡
-
-전체 데이터의 95%를 설명하기 위해서는 최소 9차원으로 줄여야 한다.
-
-</aside>
+💡전체 데이터의 95%를 설명하기 위해서는 최소 9차원으로 줄여야 한다.
 
 하지만 9차원의 데이터를 시각화 하기에는 불가능한 차원이기에 데이터를 2D로 시작화 하기 위해 2차원으로 축소하였다.
 
@@ -321,14 +311,9 @@ PCA를 통한 차원 축소를 통해 데이터를 저차원으로 줄여 고차
 
 최적의 군집은 6개인 것으로 확인 되었으며 클러스터의 값을 6개로 설정하여 K-Means를 진행하였고, PCA를 통한 데이터를 통해 시각화를 진행한 결과이다.
 
-![download.png](attachment:858cbd00-a3b1-411c-a439-1dfc601de67a:download.png)
+<img src="./img/kmeans.png">
 
-<aside>
-💡
-
-K-Means의 실루엣 점수는 0.2348로 출력 되었다.
-
-</aside>
+💡K-Means의 실루엣 점수는 0.2348로 출력 되었다.
 
 ## DBSCAN
 
@@ -371,19 +356,11 @@ print(f"\nBest Silhouette Score: {best_score:.4f} with eps={best_params[0]}, min
 
 다음과 같은 그리드 서치를 통해 이 데이터에 맞는 최적의 DBSCAN의 최적의 파라미터 조합을 찾았고 다음과 같이 나타났다.
 
-<aside>
-💡
+💡Best Filhouette Score : 0.9830 / eps = 0.1 / min_samples = 3
 
-Best Filhouette Score : 0.9830 / eps = 0.1 / min_samples = 3
+<img src="./img/dbscan.png">
 
-</aside>
-
-![download.png](attachment:5dd30a3d-0748-47ff-a8ad-ef64e89bbf14:download.png)
-
-<aside>
-💡
-
-실루엣 점수는 높으나, 원하고자 하는 클러스터는 아니었음.
+💡실루엣 점수는 높으나, 원하고자 하는 클러스터는 아니었음.
 
 </aside>
 
@@ -391,18 +368,11 @@ Best Filhouette Score : 0.9830 / eps = 0.1 / min_samples = 3
 
 GMM은 확률 기반 클러스터링 기법으로, K-Means보다 더 유연하고 통계적인 접근을 제공한다.
 
-![download.png](attachment:6d7162d7-c0f8-4107-ba82-0de949a03271:download.png)
+<img src="./img/gmm.png">
 
-<aside>
-💡
-
-GMM의 실루엣 점수는 0.2348로 출력 되었다.
-
-</aside>
+💡GMM의 실루엣 점수는 0.2348로 출력 되었다.
 
 # 분석 결론
-
----
 
 각 클러스터링에 대한 분석 결론은 다음과 같다.
 
@@ -410,12 +380,7 @@ GMM의 실루엣 점수는 0.2348로 출력 되었다.
 - DBSCAN에 대한 클러스터는 분명 군집화가 잘 이루어진 것 같지만, 분리를 하지 못한 군집화를 나타내었다.
 - Gaussian Mixture Model의 클러스터는 K-Means 보다 비교정 타원형의 데이터를 잘 잡아내어 K-Means 보다 좀 더 보완된 클러스터의 성격을 가지고 있다.
 
-<aside>
-💡
-
-이를 통해 Gaussian Mixture Model의 클러스터를 통해 데이터를 분석하는 것이 용이하다고 판단!
-
-</aside>
+💡이를 통해 Gaussian Mixture Model의 클러스터를 통해 데이터를 분석하는 것이 용이하다고 판단!
 
 또한 원본 데이터를 2차원으로 축소한 뒤 각각의 PCA가 어떤 변수를 설명하는지에 대한 내용은 다음과 같다.
 
@@ -438,6 +403,16 @@ GMM의 실루엣 점수는 0.2348로 출력 되었다.
 | cash_advance_trx | -0.284918 |
 | cash_advance | -0.298856 |
 
+PCA1은 구매 활동과 관련된 패턴을 설명하는 것으로 나타났다.
+
+💡PCA1를 설명하는 주요 변수들
+
+- `purchases_trx` (0.376565)
+- `purchases_frequency` (0.366501)
+- `purchases` (0.364183)
+- `installments_purchases` (0.326220)
+- `purchases_installments_frequency` (0.312491)
+
 |  | **PCA2** |
 | --- | --- |
 | balance | 0.437049 |
@@ -457,26 +432,9 @@ GMM의 실루엣 점수는 0.2348로 출력 되었다.
 | purchases_installments_frequency | 0.078081 |
 | prc_full_payment | -0.117452 |
 
-PCA1은 구매 활동과 관련된 패턴을 설명하는 것으로 나타났다.
-
-<aside>
-💡
-
-PCA1를 설명하는 주요 변수들
-
-- `purchases_trx` (0.376565)
-- `purchases_frequency` (0.366501)
-- `purchases` (0.364183)
-- `installments_purchases` (0.326220)
-- `purchases_installments_frequency` (0.312491)
-</aside>
-
 PCA2는 금융 상태와 관련된 패턴을 설명하는 것으로 나타났다.
 
-<aside>
-💡
-
-PCA2를 설명하는 주요 변수들
+💡PCA2를 설명하는 주요 변수들
 
 - `balance` (0.437049) :
 - `minimum_payments` (0.365028) :
@@ -484,7 +442,6 @@ PCA2를 설명하는 주요 변수들
 - `payments` (0.315424) :
 - `cash_advance_frequency` (0.272667) :
 - `cash_advance` (0.254639) :
-</aside>
 
 ## **각 군집별 솔루션 내용**
 
