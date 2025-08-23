@@ -246,16 +246,6 @@ np.log1p을 통한 로그 값 치환 후 중간값 왜곡 방지를 위해 다�
 
 ### 이상치 처리 결과 및 정리
 
-이상치 처리의 시각화 변화는 `BALANCE` 컬럼으로 예시를 확인한 결과이다.
-
-- 이상치 처리 전
-
-![download.png](attachment:b579ff5d-6ec6-4a73-8806-bcaf9ba311e2:download.png)
-
-- 로그 변환을 통한 이상치 처리 후
-
-![download.png](attachment:205c57c9-11bd-4141-a2b6-ff1d4b5b20ee:download.png)
-
 | colnames | Outlier | Outlier Rate (%) | 비고 |
 | --- | --- | --- | --- |
 | BALANCE | 123 | 1.37 |  |
